@@ -1,27 +1,40 @@
 package com.noAdd.data;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection="userDetails")
 public class UserDetails {
 	
-	private String name;
-	private int age;
+	@Id
+	private String id;
+	private String firstname;
+	private String lastname ;
 
-	public int getAge() {
-		return age;
+	public String getId() {
+		return id;
 	}
 
-	public void setAge(int age) {
-		this.age = age;
+	public void setId(String id) {
+		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getFirstname() {
+		return firstname;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setFirstname(String firstname) {
+		this.firstname = firstname;
 	}
+
+	public String getLastname() {
+		return lastname;
+	}
+
+	public void setLastname(String lastname) {
+		this.lastname = lastname;
+	}
+
+
 	
 }
