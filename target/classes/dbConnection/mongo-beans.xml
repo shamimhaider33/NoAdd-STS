@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<!-- <?xml version="1.0" encoding="UTF-8"?> -->
 
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
@@ -9,18 +9,15 @@
 		http://www.springframework.org/schema/util	http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
-	<mongo:mongo host="localhost" port="27017" />
-	<mongo:db-factory id="mongoFactory" dbname="myDb" mongo-ref="mongo" />
-
+	<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+		<property name="host" value="localhost" />
+	</bean>
 
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg ref="mongo" />
-		<constructor-arg value="myDb" />
+		<constructor-arg name="mongo" ref="mongo" />
+		<constructor-arg name="databaseName" value="noadd" />
 	</bean>
-	
+
 	<mongo:repositories base-package="com.noAdd.repo" />
 
 </beans>
-
-
-
