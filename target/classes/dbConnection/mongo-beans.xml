@@ -9,10 +9,13 @@
 		http://www.springframework.org/schema/util	http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
+<!-- MongoDB properties file implementation, Will implement this later -->
+<!-- 	<context:property-placeholder location="classpath:/dbConnection/mongo-config.properties" /> -->
+	
 	<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
 		<property name="host" value="localhost" />
 	</bean>
-
+	
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongo" ref="mongo" />
 		<constructor-arg name="databaseName" value="noadd" />

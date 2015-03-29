@@ -1,14 +1,14 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<!-- This will be the package name of the project -->
+	<!-- Package name of the project -->
 	<groupId>com.noAdd</groupId>
-	<!-- This will be the project name -->
+	<!-- Project name -->
 	<artifactId>NoAdd-STS</artifactId>
-	<!-- This will be the version number of your project -->
+	<!-- Version number of the project -->
 	<version>0.0.1-SNAPSHOT</version>
-	<!-- This will generate the compiled project as "war" you may select as 
-		"jar" or any other valied file format -->
+	<!-- Generates the compiled project as "war" you may select as "jar" or 
+		any other valid format -->
 	<packaging>war</packaging>
 
 	<properties>
@@ -17,9 +17,12 @@
 		<restful.version>1.2.1.RELEASE</restful.version>
 		<mongodb.driver.verion>2.13.0</mongodb.driver.verion>
 		<spring-data-mongodb.version>1.6.1.RELEASE</spring-data-mongodb.version>
-		<jstl.version>1.2</jstl.version>
 		<commons.logging.version>1.1.1</commons.logging.version>
 		<swagger-springmvc.version>0.8.8</swagger-springmvc.version>
+		<jackson.version>2.5.1</jackson.version>
+		<javax.validator.version>1.1.0.Final</javax.validator.version>
+		<spring.security.version>3.2.6.RELEASE</spring.security.version>
+		<oauth.security.version>1.0.0.RELEASE</oauth.security.version>
 	</properties>
 
 	<dependencies>
@@ -50,6 +53,20 @@
 			<version>${org.springframework.version}</version>
 		</dependency>
 
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-core</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<!-- OAuth2Authentication Security -->
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>${oauth.security.version}</version>
+		</dependency>
+
 		<!-- Spring Other dependencies -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -77,12 +94,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
 			<version>${javax.servlet.version}</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>jstl</groupId>
-			<artifactId>jstl</artifactId>
-			<version>${jstl.version}</version>
+			<!-- <scope>provided</scope> -->
 		</dependency>
 
 		<!-- Commans Logging -->
@@ -109,7 +121,6 @@
 			<groupId>com.mangofactory</groupId>
 			<artifactId>swagger-springmvc</artifactId>
 			<version>${swagger-springmvc.version}</version>
-	<!-- <type>bundle</type> -->
 		</dependency>
 		<dependency>
 			<groupId>org.ajar</groupId>
@@ -122,11 +133,6 @@
 			<artifactId>swagger-springmvc</artifactId>
 			<version>${swagger-springmvc.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.5.1</version>
-		</dependency>
 
 		<!-- Testing Dependencies -->
 		<dependency>
@@ -135,25 +141,26 @@
 			<version>4.11</version>
 			<scope>test</scope>
 		</dependency>
+
+		<!-- Jackson Dependencies (JSON parser) -->
 		<dependency>
-			<groupId>org.mockito</groupId>
-			<artifactId>mockito-all</artifactId>
-			<version>1.9.5</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework</groupId>
-			<artifactId>spring-test</artifactId>
-			<version>3.1.1.RELEASE</version>
+			<groupId>com.fasterxml.jackson.core</groupId>
+			<artifactId>jackson-databind</artifactId>
+			<version>${jackson.version}</version>
 		</dependency>
 
-
+		<!-- Javax Validatio Dependency -->
+		<dependency>
+			<groupId>javax.validation</groupId>
+			<artifactId>validation-api</artifactId>
+			<version>${javax.validator.version}</version>
+		</dependency>
 
 	</dependencies>
 
 	<build>
 		<!-- This overrides the default name of the generated "war" file -->
 		<finalName>NOADD</finalName>
-
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -164,9 +171,7 @@
 					<target>1.7</target>
 				</configuration>
 			</plugin>
-
 		</plugins>
-
 	</build>
 
 	<repositories>
@@ -175,6 +180,7 @@
 			<name>oss-jfrog-artifactory-releases</name>
 			<url>http://oss.jfrog.org/artifactory/oss-release-local</url>
 		</repository>
+
 	</repositories>
 
 </project>
