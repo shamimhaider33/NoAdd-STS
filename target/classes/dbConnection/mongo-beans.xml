@@ -1,5 +1,3 @@
-<!-- <?xml version="1.0" encoding="UTF-8"?> -->
-
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
 	xmlns:context="http://www.springframework.org/schema/context"
@@ -9,18 +7,22 @@
 		http://www.springframework.org/schema/util	http://www.springframework.org/schema/util/spring-util.xsd
 		http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
-<!-- MongoDB properties file implementation, Will implement this later -->
-<!-- 	<context:property-placeholder location="classpath:/dbConnection/mongo-config.properties" /> -->
-	
-	<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
-		<property name="host" value="localhost" />
-	</bean>
-	
-	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg name="mongo" ref="mongo" />
-		<constructor-arg name="databaseName" value="noadd" />
-	</bean>
-
 	<mongo:repositories base-package="com.noAdd.repo" />
 
+	<!-- MongoDB properties file implementation -->
+	<context:property-placeholder location="classpath:/dbConnection/mongo-config.properties" />
+
+	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+		<constructor-arg name="mongo" ref="mongo" />
+		<constructor-arg name="databaseName" value="${mongo.dbname}" />
+	</bean>
+
+	<bean id="mongo" class="org.springframework.data.mongodb.core.MongoFactoryBean">
+		<property name="host" value="${mongo.host}" />
+		<property name="port" value="${mongo.port}" />
+	</bean>
+	
+<!-- 	<mongo:mongo id="mongoConnection" host="${mongo.host}" port="${mongo.port}" ></mongo:mongo> -->
+<!-- 	<mongo:db-factory id="mongoFactory" username="${mongo.username}" password="${mongo.password}" dbname="${mongo.dbname}" mongo-ref="mongoConnection" /> -->
+	
 </beans>
