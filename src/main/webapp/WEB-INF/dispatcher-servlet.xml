@@ -25,6 +25,6 @@
 	<import resource="classpath:/dbConnection/mongo-beans.xml" />
 
 	<!-- Swagger Implementation (not in use as of now) -->
-	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" />
+<!-- 	<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" /> -->
 
 </beans>
