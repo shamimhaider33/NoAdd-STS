@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -27,12 +28,19 @@ import com.noAdd.service.UserService;
  */
 
 @RestController
-@RequestMapping("/user")
+@RequestMapping("/")
 public class UserControllar extends BaseController {
 	//Logger _Log = LoggerFactory.getLogger(UserControllar.class);
 	
 	@Autowired UserDetailsRepository UserDetailsRepository;
 	@Autowired UserService uServ;
+	
+	//"Langing Page" will find a better way to implement it later.
+	@RequestMapping
+	public String home(ModelMap map) {
+	        return "loginPage.jsp";
+	}	
+	
 	
 	@RequestMapping(method = RequestMethod.GET, value = "/name ")
 	public String getUser() {
