@@ -128,11 +128,6 @@
 			<version>0.1</version>
 			<scope>compile</scope>
 		</dependency>
-		<dependency>
-			<groupId>com.mangofactory</groupId>
-			<artifactId>swagger-springmvc</artifactId>
-			<version>${swagger-springmvc.version}</version>
-		</dependency>
 
 		<!-- Testing Dependencies -->
 		<dependency>
